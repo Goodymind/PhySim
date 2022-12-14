@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/wheel in an axle.obj-b43ab2c6fd8210b780a069b74b83877f.mesh"
+
+[deps]
+
+files=[ "res://.import/wheel in an axle.obj-b43ab2c6fd8210b780a069b74b83877f.mesh" ]
+
+source_file="res://assets/wheel in an axle.obj"
+dest_files=[ "res://.import/wheel in an axle.obj-b43ab2c6fd8210b780a069b74b83877f.mesh", "res://.import/wheel in an axle.obj-b43ab2c6fd8210b780a069b74b83877f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

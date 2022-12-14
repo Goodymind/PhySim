@@ -1,0 +1,442 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://simulations/Conservation of Angular Momentum.tres" type="Theme" id=1]
+[ext_resource path="res://simulations/ConservationOfAngularMomentum.cs" type="Script" id=2]
+[ext_resource path="res://assets/wheel in an axle.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/fonts/Helvetica.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/dumbbell/Dumbbell.gltf" type="PackedScene" id=5]
+[ext_resource path="res://ReturnToMainMenu.tscn" type="PackedScene" id=6]
+
+[sub_resource type="ProceduralSky" id=14]
+
+[sub_resource type="Environment" id=15]
+background_mode = 3
+background_sky = SubResource( 14 )
+background_color = Color( 0.15625, 0.15625, 0.15625, 1 )
+
+[sub_resource type="Theme" id=23]
+
+[sub_resource type="DynamicFont" id=17]
+resource_local_to_scene = true
+size = 42
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=18]
+resource_local_to_scene = true
+size = 42
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=19]
+resource_local_to_scene = true
+size = 42
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=20]
+resource_local_to_scene = true
+size = 42
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=21]
+resource_local_to_scene = true
+size = 42
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=22]
+resource_local_to_scene = true
+size = 42
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
+
+[node name="Node" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="Position3D" type="Position3D" parent="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 63.9247, 47.2273 )
+
+[node name="Camera" type="Camera" parent="Spatial/Position3D"]
+transform = Transform( 1, 0, 0, 0, 0.912406, 0.409286, 0, -0.409286, 0.912406, -21.7954, 0, 0 )
+environment = SubResource( 15 )
+current = true
+near = 0.01
+far = 1430.9
+
+[node name="Wheel" type="Spatial" parent="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial/Wheel"]
+transform = Transform( 0.4, 0, 0, 0, -1.74846e-08, 0.4, 0, -0.4, -1.74846e-08, 0, 0, 0 )
+mesh = ExtResource( 3 )
+
+[node name="Dumbbell" parent="Spatial" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 47.0733, 0 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node2D"]
+
+[node name="Control" type="Control" parent="Node2D/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="InitialMomentum" type="VBoxContainer" parent="Node2D/CanvasLayer/Control"]
+margin_left = 43.0
+margin_right = 543.0
+margin_bottom = 240.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Title" type="Label" parent="Node2D/CanvasLayer/Control/InitialMomentum"]
+margin_right = 500.0
+margin_bottom = 25.0
+text = "Initial Momentum"
+
+[node name="Mass" type="MarginContainer" parent="Node2D/CanvasLayer/Control/InitialMomentum"]
+margin_top = 29.0
+margin_right = 500.0
+margin_bottom = 96.0
+size_flags_vertical = 3
+
+[node name="MassValue" type="HSlider" parent="Node2D/CanvasLayer/Control/InitialMomentum/Mass"]
+margin_right = 500.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 3
+min_value = 1.0
+max_value = 25.0
+step = 0.1
+value = 1.0
+allow_greater = true
+allow_lesser = true
+
+[node name="MassLabel" type="Label" parent="Node2D/CanvasLayer/Control/InitialMomentum/Mass/MassValue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+text = "Mass (kg) = "
+valign = 1
+
+[node name="AngularVelocity" type="MarginContainer" parent="Node2D/CanvasLayer/Control/InitialMomentum"]
+margin_top = 100.0
+margin_right = 500.0
+margin_bottom = 168.0
+size_flags_vertical = 3
+
+[node name="AngularVelocity" type="HSlider" parent="Node2D/CanvasLayer/Control/InitialMomentum/AngularVelocity"]
+margin_right = 500.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 3
+min_value = 1.0
+max_value = 25.0
+step = 0.1
+value = 1.0
+allow_greater = true
+allow_lesser = true
+
+[node name="AngularVelocityLabel" type="Label" parent="Node2D/CanvasLayer/Control/InitialMomentum/AngularVelocity/AngularVelocity"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+text = "Angular Velocity (rad/s) ="
+valign = 1
+
+[node name="Radius" type="MarginContainer" parent="Node2D/CanvasLayer/Control/InitialMomentum"]
+margin_top = 172.0
+margin_right = 500.0
+margin_bottom = 240.0
+size_flags_vertical = 3
+
+[node name="Radius" type="HSlider" parent="Node2D/CanvasLayer/Control/InitialMomentum/Radius"]
+margin_right = 500.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 3
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+allow_greater = true
+allow_lesser = true
+
+[node name="RadiusLabel" type="Label" parent="Node2D/CanvasLayer/Control/InitialMomentum/Radius/Radius"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+text = "Radius (m) = "
+valign = 1
+autowrap = true
+
+[node name="FinalMomentum" type="VBoxContainer" parent="Node2D/CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 43.0
+margin_top = -251.0
+margin_right = 631.0
+margin_bottom = -11.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Title" type="Label" parent="Node2D/CanvasLayer/Control/FinalMomentum"]
+margin_right = 588.0
+margin_bottom = 25.0
+text = "Final Momentum"
+
+[node name="Mass" type="HSplitContainer" parent="Node2D/CanvasLayer/Control/FinalMomentum"]
+margin_top = 29.0
+margin_right = 588.0
+margin_bottom = 96.0
+size_flags_vertical = 3
+
+[node name="MassValue" type="HSlider" parent="Node2D/CanvasLayer/Control/FinalMomentum/Mass"]
+margin_right = 500.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 500, 50 )
+size_flags_vertical = 3
+min_value = 1.0
+max_value = 25.0
+step = 0.1
+value = 1.0
+allow_greater = true
+allow_lesser = true
+
+[node name="MassLabel" type="Label" parent="Node2D/CanvasLayer/Control/FinalMomentum/Mass/MassValue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+text = "Mass (kg) = "
+valign = 1
+
+[node name="MassCheck" type="CheckButton" parent="Node2D/CanvasLayer/Control/FinalMomentum/Mass"]
+unique_name_in_owner = true
+margin_left = 512.0
+margin_right = 588.0
+margin_bottom = 67.0
+size_flags_vertical = 3
+
+[node name="AngularVelocity" type="HSplitContainer" parent="Node2D/CanvasLayer/Control/FinalMomentum"]
+margin_top = 100.0
+margin_right = 588.0
+margin_bottom = 168.0
+rect_min_size = Vector2( 400, 0 )
+size_flags_vertical = 3
+
+[node name="AngularVelocity" type="HSlider" parent="Node2D/CanvasLayer/Control/FinalMomentum/AngularVelocity"]
+margin_right = 500.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 500, 50 )
+size_flags_vertical = 3
+min_value = 1.0
+max_value = 25.0
+step = 0.0
+value = 1.0
+allow_greater = true
+allow_lesser = true
+
+[node name="AngularVelocityLabel" type="Label" parent="Node2D/CanvasLayer/Control/FinalMomentum/AngularVelocity/AngularVelocity"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+text = "Angular Velocity (rad/s) ="
+valign = 1
+
+[node name="AngularVelocityCheck" type="CheckButton" parent="Node2D/CanvasLayer/Control/FinalMomentum/AngularVelocity"]
+unique_name_in_owner = true
+margin_left = 512.0
+margin_right = 588.0
+margin_bottom = 68.0
+size_flags_vertical = 3
+disabled = true
+pressed = true
+
+[node name="Radius" type="HSplitContainer" parent="Node2D/CanvasLayer/Control/FinalMomentum"]
+margin_top = 172.0
+margin_right = 588.0
+margin_bottom = 240.0
+size_flags_vertical = 3
+
+[node name="Radius" type="HSlider" parent="Node2D/CanvasLayer/Control/FinalMomentum/Radius"]
+margin_right = 500.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 500, 50 )
+size_flags_vertical = 3
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+allow_greater = true
+allow_lesser = true
+
+[node name="RadiusLabel" type="Label" parent="Node2D/CanvasLayer/Control/FinalMomentum/Radius/Radius"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+text = "Radius (m) = "
+valign = 1
+
+[node name="RadiusCheck" type="CheckButton" parent="Node2D/CanvasLayer/Control/FinalMomentum/Radius"]
+unique_name_in_owner = true
+margin_left = 512.0
+margin_right = 588.0
+margin_bottom = 68.0
+size_flags_vertical = 3
+
+[node name="TotalMomentum" type="Label" parent="Node2D/CanvasLayer/Control"]
+margin_left = 48.0
+margin_top = 238.0
+margin_right = 464.0
+margin_bottom = 269.0
+text = "Angular Momentum (kgm²/s) = "
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Equation" type="HBoxContainer" parent="Node2D/CanvasLayer/Control"]
+anchor_bottom = 1.0
+margin_left = 43.0
+margin_top = 287.0
+margin_right = 347.0
+margin_bottom = -251.0
+grow_vertical = 2
+theme = SubResource( 23 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Panel" type="Panel" parent="Node2D/CanvasLayer/Control/Equation"]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Left" type="HBoxContainer" parent="Node2D/CanvasLayer/Control/Equation"]
+margin_left = 4.0
+margin_right = 143.0
+margin_bottom = 182.0
+size_flags_horizontal = 3
+custom_constants/separation = 30
+alignment = 1
+
+[node name="Mass" type="Label" parent="Node2D/CanvasLayer/Control/Equation/Left"]
+margin_top = 69.0
+margin_right = 35.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 17 )
+text = "m"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AngularVelocity" type="Label" parent="Node2D/CanvasLayer/Control/Equation/Left"]
+margin_left = 65.0
+margin_top = 69.0
+margin_right = 95.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 18 )
+text = "w"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Radius" type="Label" parent="Node2D/CanvasLayer/Control/Equation/Left"]
+margin_left = 125.0
+margin_top = 69.0
+margin_right = 139.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 19 )
+text = "r"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Equals" type="Label" parent="Node2D/CanvasLayer/Control/Equation"]
+margin_left = 147.0
+margin_right = 161.0
+margin_bottom = 182.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+text = "="
+align = 1
+valign = 1
+
+[node name="Right" type="HBoxContainer" parent="Node2D/CanvasLayer/Control/Equation"]
+margin_left = 165.0
+margin_right = 304.0
+margin_bottom = 182.0
+size_flags_horizontal = 3
+custom_constants/separation = 30
+alignment = 1
+
+[node name="Mass" type="Label" parent="Node2D/CanvasLayer/Control/Equation/Right"]
+margin_top = 69.0
+margin_right = 35.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 20 )
+text = "m"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AngularVelocity" type="Label" parent="Node2D/CanvasLayer/Control/Equation/Right"]
+margin_left = 65.0
+margin_top = 69.0
+margin_right = 95.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 21 )
+text = "w"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Radius" type="Label" parent="Node2D/CanvasLayer/Control/Equation/Right"]
+margin_left = 125.0
+margin_top = 69.0
+margin_right = 139.0
+margin_bottom = 112.0
+custom_fonts/font = SubResource( 22 )
+text = "r"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ReturnToMainMenu" parent="Node2D/CanvasLayer/Control" instance=ExtResource( 6 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -207.0
+margin_top = 29.0
+margin_right = -51.0
+margin_bottom = 94.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="pressed" from="Node2D/CanvasLayer/Control/FinalMomentum/Mass/MassCheck" to="." method="SwitchTarget" binds= [ 0 ]]
+[connection signal="pressed" from="Node2D/CanvasLayer/Control/FinalMomentum/AngularVelocity/AngularVelocityCheck" to="." method="SwitchTarget" binds= [ 1 ]]
+[connection signal="pressed" from="Node2D/CanvasLayer/Control/FinalMomentum/Radius/RadiusCheck" to="." method="SwitchTarget" binds= [ 2 ]]

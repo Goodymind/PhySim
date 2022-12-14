@@ -1,0 +1,311 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://simulations/InclinedSlope.cs" type="Script" id=1]
+[ext_resource path="res://assets/car_wheel_PNG23318.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/Helvetica.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://ReturnToMainMenu.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Environment" id=14]
+background_mode = 4
+background_color = Color( 0.737255, 0.435294, 0.435294, 1 )
+ambient_light_color = Color( 0.886275, 0.0156863, 0.0156863, 1 )
+glow_intensity = 4.1
+adjustment_brightness = 3.16
+
+[sub_resource type="DynamicFont" id=12]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="ImageTexture" id=8]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.0196078, 0.270588, 0.498039, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.380392, 0.415686, 0.447059, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxLine" id=11]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+color = Color( 0, 0.0196078, 0.290196, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+
+[sub_resource type="Theme" id=13]
+Button/fonts/font = SubResource( 12 )
+HSlider/icons/grabber = SubResource( 8 )
+HSlider/icons/grabber_highlight = SubResource( 8 )
+HSlider/styles/grabber_area = SubResource( 10 )
+HSlider/styles/grabber_area_highlight = SubResource( 9 )
+HSlider/styles/slider = SubResource( 11 )
+ItemList/colors/font_color = Color( 1, 1, 1, 1 )
+ItemList/constants/vseparation = 12
+ItemList/styles/bg = SubResource( 3 )
+Label/colors/font_color = Color( 1, 1, 1, 1 )
+Label/fonts/font = SubResource( 4 )
+Panel/styles/panel = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=15]
+resource_local_to_scene = true
+size = 20
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="Node" type="Node"]
+script = ExtResource( 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 14 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 13 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PlaneAnchor" type="Control" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/Control/PlaneAnchor"]
+position = Vector2( -153, 532 )
+
+[node name="Plane" type="Node2D" parent="CanvasLayer/Control/PlaneAnchor/Node2D"]
+
+[node name="Object" type="Sprite" parent="CanvasLayer/Control/PlaneAnchor/Node2D/Plane"]
+position = Vector2( 0, -24 )
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 2 )
+
+[node name="Slope" type="Polygon2D" parent="CanvasLayer/Control/PlaneAnchor/Node2D"]
+color = Color( 0.168627, 0.337255, 0.152941, 1 )
+polygon = PoolVector2Array( -104, 0, 0, 0, -104, -160 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Parameters" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_bottom = 1.0
+margin_left = 57.0
+margin_top = 312.0
+margin_right = 494.0
+margin_bottom = -38.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Angle" type="MarginContainer" parent="CanvasLayer/Control/Parameters"]
+margin_right = 437.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Value" type="HSlider" parent="CanvasLayer/Control/Parameters/Angle"]
+margin_right = 437.0
+margin_bottom = 70.0
+size_flags_vertical = 3
+min_value = 0.1
+max_value = 90.0
+value = 30.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Parameters/Angle/Value"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Angle"
+valign = 1
+
+[node name="Distance" type="MarginContainer" parent="CanvasLayer/Control/Parameters"]
+margin_top = 74.0
+margin_right = 437.0
+margin_bottom = 145.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Value" type="HSlider" parent="CanvasLayer/Control/Parameters/Distance"]
+margin_right = 437.0
+margin_bottom = 71.0
+size_flags_vertical = 3
+max_value = 50.0
+step = 0.1
+value = 20.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Parameters/Distance/Value"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Distance (m) = "
+valign = 1
+
+[node name="Radius" type="MarginContainer" parent="CanvasLayer/Control/Parameters"]
+margin_top = 149.0
+margin_right = 437.0
+margin_bottom = 220.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Value" type="HSlider" parent="CanvasLayer/Control/Parameters/Radius"]
+margin_right = 437.0
+margin_bottom = 71.0
+size_flags_vertical = 3
+min_value = 0.5
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Parameters/Radius/Value"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Radius (m) ="
+valign = 1
+
+[node name="Time" type="MarginContainer" parent="CanvasLayer/Control/Parameters"]
+margin_top = 224.0
+margin_right = 437.0
+margin_bottom = 295.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Value" type="HSlider" parent="CanvasLayer/Control/Parameters/Time"]
+margin_right = 437.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 500.0
+step = 0.05
+value = 0.1
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Parameters/Time/Value"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Time (s) = "
+valign = 1
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Control/Parameters"]
+margin_top = 299.0
+margin_right = 437.0
+margin_bottom = 370.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Auto-Advance"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Control" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_bottom = 1.0
+margin_left = 57.0
+margin_top = 66.0
+margin_right = 452.0
+margin_bottom = -436.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Gravity" type="Label" parent="CanvasLayer/Control/Control"]
+margin_right = 437.0
+margin_bottom = 31.0
+text = "Gravity Acceleration (m/s/s)= 9.8"
+
+[node name="Acceleration" type="Label" parent="CanvasLayer/Control/Control"]
+margin_top = 35.0
+margin_right = 437.0
+margin_bottom = 66.0
+text = "Acceleration (m/s/s) = "
+
+[node name="Velocity" type="Label" parent="CanvasLayer/Control/Control"]
+margin_top = 70.0
+margin_right = 437.0
+margin_bottom = 101.0
+text = "Velocity (m/s) = "
+
+[node name="Displacement" type="Label" parent="CanvasLayer/Control/Control"]
+margin_top = 105.0
+margin_right = 437.0
+margin_bottom = 136.0
+text = "Displacement (m) ="
+
+[node name="AngularDisplacement" type="Label" parent="CanvasLayer/Control/Control"]
+margin_top = 140.0
+margin_right = 437.0
+margin_bottom = 171.0
+text = "Angular Displacement (rad) ="
+
+[node name="AngularVelocity" type="Label" parent="CanvasLayer/Control/Control"]
+margin_top = 175.0
+margin_right = 437.0
+margin_bottom = 206.0
+text = "Angular Velocity (rad/s) = "
+
+[node name="ReturnToMainMenu" parent="CanvasLayer/Control" instance=ExtResource( 4 )]
+margin_left = 1038.0
+margin_top = 69.0
+margin_right = 1194.0
+margin_bottom = 134.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -756.0
+margin_top = -184.0
+margin_right = -44.0
+margin_bottom = -19.0
+custom_fonts/font = SubResource( 15 )
+text = "This simulation uses Newton's second law and free body diagrams. It is not recommended as it is a little difficult to use. But in slopes, rolling objects are slower than sliding objects. Consult this youtube video for the derivation. (https://www.youtube.com/watch?v=gj9H1Ti4yc0)
+if Inertia of Disk = mr²/2, and a = gsin(θ) / (1 + Inertia / mr²)
+then a = gsin(θ)/(1+1/2)
+a = 2gsin(θ)/3"
+align = 2
+autowrap = true

@@ -1,0 +1,304 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/crane/kisspng-metal-structural-steel-beam-clip-art-benching-cliparts-5a7b2df45dbfa6.326398731518022132384.png" type="Texture" id=3]
+[ext_resource path="res://simulations/StaticEquilibrium.cs" type="Script" id=4]
+[ext_resource path="res://assets/fonts/Helvetica.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://ReturnToMainMenu.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=12]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="ImageTexture" id=8]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.0196078, 0.270588, 0.498039, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.380392, 0.415686, 0.447059, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxLine" id=11]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+color = Color( 0, 0.0196078, 0.290196, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+
+[sub_resource type="Theme" id=13]
+Button/fonts/font = SubResource( 12 )
+HSlider/icons/grabber = SubResource( 8 )
+HSlider/icons/grabber_highlight = SubResource( 8 )
+HSlider/styles/grabber_area = SubResource( 10 )
+HSlider/styles/grabber_area_highlight = SubResource( 9 )
+HSlider/styles/slider = SubResource( 11 )
+ItemList/colors/font_color = Color( 1, 1, 1, 1 )
+ItemList/constants/vseparation = 12
+ItemList/styles/bg = SubResource( 3 )
+Label/colors/font_color = Color( 1, 1, 1, 1 )
+Label/fonts/font = SubResource( 4 )
+Panel/styles/panel = SubResource( 5 )
+
+[node name="Node" type="Node"]
+script = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
+theme = SubResource( 13 )
+
+[node name="LeftObject" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 64.0
+margin_top = -239.0
+margin_right = 452.0
+margin_bottom = -48.0
+
+[node name="Mass" type="HSplitContainer" parent="CanvasLayer/Control/LeftObject"]
+margin_right = 388.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Value" type="HSlider" parent="CanvasLayer/Control/LeftObject/Mass"]
+margin_right = 300.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 1.0
+max_value = 5.0
+step = 0.05
+value = 1.0
+allow_greater = true
+allow_lesser = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/LeftObject/Mass/Value"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Mass (kg) = "
+valign = 1
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Control/LeftObject/Mass"]
+margin_left = 312.0
+margin_right = 388.0
+margin_bottom = 61.0
+size_flags_horizontal = 9
+size_flags_vertical = 3
+pressed = true
+
+[node name="Radius" type="HSplitContainer" parent="CanvasLayer/Control/LeftObject"]
+margin_top = 65.0
+margin_right = 388.0
+margin_bottom = 126.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Value" type="HSlider" parent="CanvasLayer/Control/LeftObject/Radius"]
+margin_right = 300.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.1
+max_value = 7.0
+step = 0.05
+value = 0.1
+allow_greater = true
+allow_lesser = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/LeftObject/Radius/Value"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 1
+text = "Distance (m) ="
+valign = 1
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Control/LeftObject/Radius"]
+margin_left = 312.0
+margin_right = 388.0
+margin_bottom = 61.0
+
+[node name="Torque" type="MarginContainer" parent="CanvasLayer/Control/LeftObject"]
+margin_top = 130.0
+margin_right = 388.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/LeftObject/Torque"]
+margin_right = 388.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Torque (T) = "
+
+[node name="RightObject" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -441.0
+margin_top = -239.0
+margin_right = -53.0
+margin_bottom = -48.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Mass" type="HSplitContainer" parent="CanvasLayer/Control/RightObject"]
+margin_right = 388.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Value" type="HSlider" parent="CanvasLayer/Control/RightObject/Mass"]
+margin_right = 300.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 1.0
+max_value = 5.0
+step = 0.05
+value = 1.0
+allow_greater = true
+allow_lesser = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/RightObject/Mass/Value"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Mass (kg) = "
+valign = 1
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Control/RightObject/Mass"]
+margin_left = 312.0
+margin_right = 388.0
+margin_bottom = 61.0
+size_flags_horizontal = 9
+size_flags_vertical = 3
+
+[node name="Radius" type="HSplitContainer" parent="CanvasLayer/Control/RightObject"]
+margin_top = 65.0
+margin_right = 388.0
+margin_bottom = 126.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Value" type="HSlider" parent="CanvasLayer/Control/RightObject/Radius"]
+margin_right = 300.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.1
+max_value = 7.0
+step = 0.05
+value = 0.1
+allow_greater = true
+allow_lesser = true
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/RightObject/Radius/Value"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 1
+text = "Distance (m) ="
+valign = 1
+
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Control/RightObject/Radius"]
+margin_left = 312.0
+margin_right = 388.0
+margin_bottom = 61.0
+
+[node name="Torque" type="MarginContainer" parent="CanvasLayer/Control/RightObject"]
+margin_top = 130.0
+margin_right = 388.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/RightObject/Torque"]
+margin_right = 388.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Torque (T) = "
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -161.0
+margin_top = -116.0
+margin_right = 161.0
+margin_bottom = -85.0
+text = "Acceleration = 9.8 m/s/s"
+
+[node name="ReturnToMainMenu" parent="CanvasLayer/Control" instance=ExtResource( 6 )]
+margin_left = 1058.0
+margin_top = 57.0
+margin_right = 1214.0
+margin_bottom = 122.0
+
+[node name="Seesaw" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Pivot" type="Polygon2D" parent="Seesaw"]
+offset = Vector2( 0, 32 )
+polygon = PoolVector2Array( 0, -32, -32, 48, 32, 48 )
+
+[node name="Bar" type="Polygon2D" parent="Seesaw/Pivot"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -800, 10, -800, -10, 800, -10, 800, 10 )
+
+[node name="Left" type="Sprite" parent="Seesaw/Pivot/Bar"]
+position = Vector2( -320, 0 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 3 )
+
+[node name="Right" type="Sprite" parent="Seesaw/Pivot/Bar"]
+position = Vector2( 320, 0 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 3 )
+
+[connection signal="pressed" from="CanvasLayer/Control/LeftObject/Mass/CheckButton" to="." method="ChangeTarget" binds= [ 0 ]]
+[connection signal="pressed" from="CanvasLayer/Control/LeftObject/Radius/CheckButton" to="." method="ChangeTarget" binds= [ 1 ]]
+[connection signal="pressed" from="CanvasLayer/Control/RightObject/Mass/CheckButton" to="." method="ChangeTarget" binds= [ 2 ]]
+[connection signal="pressed" from="CanvasLayer/Control/RightObject/Radius/CheckButton" to="." method="ChangeTarget" binds= [ 3 ]]

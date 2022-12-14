@@ -1,0 +1,60 @@
+[gd_resource type="Theme" load_steps=10 format=2]
+
+[ext_resource path="res://assets/fonts/Helvetica.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://simulations/OverrideFont.tres" type="DynamicFont" id=2]
+
+[sub_resource type="ImageTexture" id=8]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.0196078, 0.270588, 0.498039, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.380392, 0.415686, 0.447059, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxLine" id=11]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+color = Color( 0, 0.0196078, 0.290196, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 24
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+
+[resource]
+default_font = ExtResource( 2 )
+HSlider/icons/grabber = SubResource( 8 )
+HSlider/icons/grabber_highlight = SubResource( 8 )
+HSlider/styles/grabber_area = SubResource( 10 )
+HSlider/styles/grabber_area_highlight = SubResource( 9 )
+HSlider/styles/slider = SubResource( 11 )
+ItemList/colors/font_color = Color( 1, 1, 1, 1 )
+ItemList/constants/vseparation = 12
+ItemList/styles/bg = SubResource( 3 )
+Label/colors/font_color = Color( 1, 1, 1, 1 )
+Label/fonts/font = SubResource( 13 )
+Panel/styles/panel = SubResource( 5 )

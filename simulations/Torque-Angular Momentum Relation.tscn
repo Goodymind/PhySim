@@ -1,0 +1,462 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://simulations/TorqueMomentumRelation.cs" type="Script" id=1]
+[ext_resource path="res://assets/wheel in an axle.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://default_env.tres" type="Environment" id=3]
+[ext_resource path="res://ReturnToMainMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/fonts/Helvetica.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/dumbbell/Dumbbell.gltf" type="PackedScene" id=6]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 13.8698, 0, 0, Vector2( 0.128814, 0.84106 ), 0.191233, 0.182441, 0, 1, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="DynamicFont" id=12]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="ImageTexture" id=8]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.0196078, 0.270588, 0.498039, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.380392, 0.415686, 0.447059, 1 )
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_top = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxLine" id=11]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+color = Color( 0, 0.0196078, 0.290196, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+
+[sub_resource type="Theme" id=13]
+Button/fonts/font = SubResource( 12 )
+HSlider/icons/grabber = SubResource( 8 )
+HSlider/icons/grabber_highlight = SubResource( 8 )
+HSlider/styles/grabber_area = SubResource( 10 )
+HSlider/styles/grabber_area_highlight = SubResource( 9 )
+HSlider/styles/slider = SubResource( 11 )
+ItemList/colors/font_color = Color( 1, 1, 1, 1 )
+ItemList/constants/vseparation = 12
+ItemList/styles/bg = SubResource( 3 )
+Label/colors/font_color = Color( 1, 1, 1, 1 )
+Label/fonts/font = SubResource( 4 )
+Panel/styles/panel = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=14]
+resource_local_to_scene = true
+size = 20
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=15]
+resource_local_to_scene = true
+size = 20
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=16]
+resource_local_to_scene = true
+size = 20
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+resource_local_to_scene = true
+size = 20
+use_filter = true
+font_data = ExtResource( 5 )
+
+[node name="Node" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 720.0 ],
+"_edit_vertical_guides_": [ 0.0 ]
+}
+TorqueSizeCurve = SubResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 13 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EQUATION" type="MarginContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -148.0
+margin_top = -79.0
+margin_bottom = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/EQUATION"]
+margin_right = 148.0
+margin_bottom = 31.0
+grow_horizontal = 0
+alignment = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Torque" type="Label" parent="CanvasLayer/Control/EQUATION/HBoxContainer"]
+margin_left = 9.0
+margin_top = 5.0
+margin_right = 40.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 14 )
+text = "Nm"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Equals" type="Label" parent="CanvasLayer/Control/EQUATION/HBoxContainer"]
+margin_left = 44.0
+margin_right = 62.0
+margin_bottom = 31.0
+text = "="
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Final Momentum" type="Label" parent="CanvasLayer/Control/EQUATION/HBoxContainer"]
+margin_left = 66.0
+margin_top = 5.0
+margin_right = 83.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 15 )
+text = "Lf"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Minus" type="Label" parent="CanvasLayer/Control/EQUATION/HBoxContainer"]
+margin_left = 87.0
+margin_right = 97.0
+margin_bottom = 31.0
+text = "-"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Initial Momentum" type="Label" parent="CanvasLayer/Control/EQUATION/HBoxContainer"]
+margin_left = 101.0
+margin_top = 5.0
+margin_right = 116.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 16 )
+text = "Li"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bar" type="Label" parent="CanvasLayer/Control/EQUATION/HBoxContainer"]
+margin_left = 120.0
+margin_right = 128.0
+margin_bottom = 31.0
+text = "/"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Time" type="Label" parent="CanvasLayer/Control/EQUATION/HBoxContainer"]
+margin_left = 132.0
+margin_top = 5.0
+margin_right = 138.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 6 )
+text = "t"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Initial Momentum" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_bottom = 1.0
+margin_right = 711.0
+margin_bottom = -527.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Initial Momentum"]
+margin_right = 711.0
+margin_bottom = 31.0
+text = "Initial Momentum"
+valign = 1
+
+[node name="Mass" type="Control" parent="CanvasLayer/Control/Initial Momentum"]
+margin_top = 35.0
+margin_right = 711.0
+margin_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 400, 50 )
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control/Initial Momentum/Mass"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 400, 50 )
+max_value = 50.0
+value = 50.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Initial Momentum/Mass/HSlider"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "MASS"
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Radius" type="Control" parent="CanvasLayer/Control/Initial Momentum"]
+margin_top = 89.0
+margin_right = 711.0
+margin_bottom = 139.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 400, 50 )
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control/Initial Momentum/Radius"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 400, 50 )
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Initial Momentum/Radius/HSlider"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "RADIUS"
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Angular Velocity" type="Control" parent="CanvasLayer/Control/Initial Momentum"]
+margin_top = 143.0
+margin_right = 711.0
+margin_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 400, 50 )
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control/Initial Momentum/Angular Velocity"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 400, 50 )
+min_value = -30.0
+max_value = 30.0
+value = -10.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Initial Momentum/Angular Velocity/HSlider"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "ANGULAR VELOCITY"
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Final Momentum" type="VBoxContainer" parent="CanvasLayer/Control"]
+anchor_bottom = 1.0
+margin_top = 199.0
+margin_right = 711.0
+margin_bottom = -328.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Final Momentum"]
+margin_right = 711.0
+margin_bottom = 31.0
+text = "Final Momentum"
+valign = 1
+
+[node name="Mass" type="Control" parent="CanvasLayer/Control/Final Momentum"]
+margin_top = 35.0
+margin_right = 711.0
+margin_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 400, 50 )
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control/Final Momentum/Mass"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 400, 50 )
+max_value = 50.0
+value = 50.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Final Momentum/Mass/HSlider"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "MASS"
+valign = 1
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Radius" type="Control" parent="CanvasLayer/Control/Final Momentum"]
+margin_top = 89.0
+margin_right = 711.0
+margin_bottom = 139.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 400, 50 )
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control/Final Momentum/Radius"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 400, 50 )
+min_value = 0.1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Final Momentum/Radius/HSlider"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "RADIUS"
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Angular Velocity" type="Control" parent="CanvasLayer/Control/Final Momentum"]
+margin_top = 143.0
+margin_right = 711.0
+margin_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 400, 50 )
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control/Final Momentum/Angular Velocity"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 400, 50 )
+min_value = -30.0
+max_value = 30.0
+value = 10.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Final Momentum/Angular Velocity/HSlider"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "ANGULAR VELOCITY"
+valign = 1
+clip_text = true
+
+[node name="SpinCheck" type="CheckButton" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -144.0
+margin_right = 260.0
+margin_bottom = -79.0
+text = "Apply Torque"
+
+[node name="Time" type="HSlider" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -261.0
+margin_right = 711.0
+margin_bottom = -211.0
+min_value = 0.2
+max_value = 20.0
+step = 0.2
+value = 10.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Time"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "TIME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CurrentTime" type="Label" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -79.0
+margin_right = 210.0
+margin_bottom = -48.0
+text = "Current Time = "
+
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+anchor_bottom = 1.0
+margin_top = 509.0
+margin_right = 400.0
+margin_bottom = -144.0
+text = "RESET"
+icon_align = 1
+
+[node name="ReturnToMainMenu" parent="CanvasLayer/Control" instance=ExtResource( 4 )]
+margin_left = 1069.0
+margin_top = 29.0
+margin_right = 1225.0
+margin_bottom = 94.0
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="Position3D" type="Position3D" parent="Spatial"]
+transform = Transform( 0.993735, -0.111764, 0, 0.0775, 0.689083, 0.720527, -0.0805288, -0.716013, 0.693427, -70.0059, 123.254, 64.2263 )
+
+[node name="Camera" type="Camera" parent="Spatial/Position3D"]
+environment = ExtResource( 3 )
+far = 1772.1
+
+[node name="Wheel" type="Spatial" parent="Spatial"]
+
+[node name="wheel in an axle" type="MeshInstance" parent="Spatial/Wheel"]
+transform = Transform( 0.450706, 0, 0, 0, -1.9701e-08, 0.450706, 0, -0.450706, -1.9701e-08, 0, 0, 0 )
+mesh = ExtResource( 2 )
+skeleton = NodePath("../../..")
+
+[node name="Dumbbell" parent="Spatial" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 53.8088, 0 )
+
+[connection signal="toggled" from="CanvasLayer/Control/SpinCheck" to="." method="SpinToggle"]
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="Reset"]
