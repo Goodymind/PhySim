@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/fonts/Helvetica.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ReturnToMainMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/themes/MainMenu.tres" type="Theme" id=3]
+[ext_resource path="res://logo.jpg" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
+size = 28
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.109804, 0.109804, 0.109804, 1 )
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+expand_margin_left = 40.0
+expand_margin_right = 40.0
+expand_margin_top = 40.0
+expand_margin_bottom = 40.0
+
+[node name="Node" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 78.0
+margin_right = -640.0
+margin_bottom = -69.0
+custom_fonts/font = SubResource( 1 )
+text = "About Physim
+
+Physim is a cross-platform simulation app designed by a group of Valenzuela City School of Mathematics and Science students for their research subject. It aims to improve the understanding of students in physics class. This app, as of now, contains simulations related to angular kinematics and dynamics.
+
+The researchers would like to thank their research adviser, Mrs. Loreta Salvador, for her support in this project.
+
+-Alinus Abuke, Alessia Aguilar, Chriciella Buenaventura, Jazmin Althea Santos, and Charlene Sentillas"
+autowrap = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/Label"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="ReturnToMainMenu" parent="CanvasLayer/Control" instance=ExtResource( 2 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -285.0
+margin_top = 51.0
+margin_right = -129.0
+margin_bottom = 116.0
+theme = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -285.0
+margin_top = 396.0
+margin_right = -285.0
+margin_bottom = -324.0
+
+[node name="Logo" type="Sprite" parent="CanvasLayer/Control/Control"]
+scale = Vector2( 0.872, 0.872 )
+texture = ExtResource( 4 )
